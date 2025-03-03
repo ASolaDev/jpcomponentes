@@ -21,5 +21,4 @@ export class ConexionRemotaService {
   getFabricantesData() {
     return this.http.get(this.apiBase + "fabricantes");
   }
-
 }

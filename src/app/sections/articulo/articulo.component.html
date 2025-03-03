@@ -1,10 +1,14 @@
 <div class="card text-center bg-light mb-2 mr-2">
     <a>
-        <img src="RUTA" class="card-img-top">
+        <img src="{{datos.imagen}}" style="width: 200px;" class="card-img-top">
     </a>
     <div class="card-body">
-        <h5 class="card-title">NOMBRE</h5>
-        <p class="card-text">PRECIO</p>
-        AQUÍ VA UN BOTÓN DE AÑADIR AL CARRITO O UN AVISO DE QUE NO HAY STOCK
+        <h5 class="card-title">{{datos.nombre}}</h5>
+        <p class="card-text">{{datos.precio}}</p>
+        @if(datos.stock) {
+        <button class="btn btn-success">Añadir al carrito</button>
+        } @else {
+        <p style="color: red;">Fuera de stock</p>
+        }
     </div>
 </div>
