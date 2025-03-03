@@ -68,7 +68,25 @@ export class BaseDatosArticulosService {
   }
 
   getArticuloByNombre(patron: string) {
-    return this.articulos.filter(n => n.nombre.toLowerCase().includes(patron.toLowerCase()))
+    return this.articulos.filter(n => n.nombre.toLowerCase().includes(patron.toLowerCase()));
+  }
+
+  filtrados(patron: string, selCat: string, selFab: string) {
+    let filteredArticles = this.articulos;
+
+    if (patron) {
+      filteredArticles = this.getArticuloByNombre(patron);
+    }
+
+    if (selCat !== "0") {
+      filteredArticles = filteredArticles.filter(article => article.cat == selCat);
+    }
+
+    if (selFab !== "0") {
+      filteredArticles = filteredArticles.filter(article => article.fab == selFab);
+    }
+
+    return filteredArticles;
   }
 
 }

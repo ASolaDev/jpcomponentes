@@ -4,9 +4,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="categoriesNav">
             <ul class="navbar-nav">
+                @for (categoria of getCategorias(); track $index) {
                 <li class="nav-item">
-                    <a class="nav-link">Procesadores</a>
+                    <button (click)="setCat(categoria.id)" class="nav-link">{{categoria.nombre}}</button>
                 </li>
+                }
             </ul>
         </div>
     </nav>
@@ -16,9 +18,11 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="collapse navbar-collapse" id="manufacturersNav">
             <ul class="navbar-nav">
+                @for (fabricante of getFabricantes(); track $index) {
                 <li class="nav-item">
-                    <a class="nav-link">AMD</a>
+                    <button (click)="setFab(fabricante.id)" class="nav-link">{{fabricante.nombre}}</button>
                 </li>
+                }
             </ul>
         </div>
     </nav>
@@ -26,12 +30,10 @@
 
 <div class="row">
     <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Buscar por nombre" aria-label="Buscar por nombre"
-            aria-describedby="basic-addon2">
+        <input #patron (keyup)="setPatron(patron.value)" type="text" class="form-control"
+            placeholder="Buscar por nombre" aria-label="Buscar por nombre" aria-describedby="basic-addon2">
         <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-                Buscar
-            </button>
+            <button class="btn btn-primary" type="button">Buscar</button>
         </div>
     </div>
 </div>
@@ -42,7 +44,9 @@
     </div>
     <div class="row">
         <div class="row row-cols-md-5">
-            AQUÍ VA UNA REPETICIÓN DE LLAMADAS AL COMPONENTE ARTICULO
+            @for(resultado of filtrados(); track $index) {
+            <app-articulo [datos]="resultado" />
+            }
         </div>
     </div>
 </ng-container>
