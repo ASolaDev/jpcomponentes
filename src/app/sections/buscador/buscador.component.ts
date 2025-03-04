@@ -19,28 +19,30 @@ export class BuscadorComponent {
   fabricantes: any[] = [];
   resultados: any[] = [];
 
-  constructor(private datos: BaseDatosArticulosService) {
+  constructor(private datos: BaseDatosArticulosService) { }
+
+  ngOnInit() {
     this.categorias = this.datos.getCategorias();
     this.fabricantes = this.datos.getFabricantes();
-    this.buscar();
+    this.filtrados();
   }
 
   setCat(id: string) {
     this.selCat = id;
-    this.buscar();
+    this.filtrados();
   }
 
   setFab(id: string) {
     this.selFab = id;
-    this.buscar();
+    this.filtrados();
   }
 
   setPatron(pattern: string) {
     this.patron = pattern;
-    this.buscar();
+    this.filtrados();
   }
 
-  buscar() {
+  filtrados() {
     this.resultados = this.datos.filtrados(this.patron, this.selCat, this.selFab);
   }
 }
