@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { CarritoComponent } from '../carrito/carrito.component';
+import { CartService } from '../../servicios/cart.service';
 
 @Component({
   selector: 'app-articulo',
@@ -9,4 +11,10 @@ import { Component, Input } from '@angular/core';
 
 export class ArticuloComponent {
   @Input() datos: any;
+
+  constructor(private carritoSrvc: CartService) { }
+
+  addToCarrito(datos: any) {
+    this.carritoSrvc.addToCarrito(datos);
+  }
 }
