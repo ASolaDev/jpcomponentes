@@ -3,13 +3,15 @@
         <img class="img-thumbnail float-start" src="{{datos.imagen}}" alt="Imagen de {{datos.nombre}}">
         {{datos.nombre}}
     </div>
-    <div>{{datos.precio}}</div>
+    <div>{{datos.precio}}€</div>
     <div>
-        BOTÓN PARA DECREMENTAR UNIDADES SI HAY MÁS DE 1
-        INPUT NO EDITABLE PARA MOSTRAR UNIDADES
-        BOTÓN PARA INCREMENTAR UNIDADES
+        <div class="d-flex align-items-center">
+            <button (click)="restarCantidad()" class="btn btn-danger fw-bold me-2">-</button>
+            <input type="text" [value]="datos.cantidad" disabled="true" class="form-control me-2" style="width: 60px;">
+            <button (click)="aumentarCantidad()" class="btn btn-success fw-bold">+</button>
+        </div>
     </div>
-    <div>SUBTOTAL DE ESE ARTÍCULO</div>
+    <div>{{(datos.precio * datos.cantidad).toFixed(2)}}€</div>
     <div>
         BOTÓN PARA ELIMINAR ESE ARTÍCULO DEL CARRITO
     </div>

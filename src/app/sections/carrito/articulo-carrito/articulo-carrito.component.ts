@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { CartService } from '../../../servicios/cart.service';
 
 @Component({
   selector: 'app-articulo-carrito',
@@ -10,5 +11,14 @@ import { Component, Input } from '@angular/core';
 export class ArticuloCarritoComponent {
   @Input() datos: any;
 
+  constructor(private carritoSrvc: CartService) { }
+
+  aumentarCantidad() {
+    this.carritoSrvc.actualizarCantidad(this.datos.id, this.datos.cantidad + 1);
+  }
+
+  restarCantidad() {
+    this.carritoSrvc.actualizarCantidad(this.datos.id, this.datos.cantidad - 1);
+  }
 
 }
