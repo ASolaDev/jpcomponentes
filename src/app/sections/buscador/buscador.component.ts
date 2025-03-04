@@ -17,7 +17,9 @@ export class BuscadorComponent {
   resultados: any;
 
 
-  constructor(private datos: BaseDatosArticulosService) { }
+  constructor(private datos: BaseDatosArticulosService) {
+    this.resultados = this.datos.getArticulos();
+  }
 
   getCategorias() {
     return this.datos.getCategorias();

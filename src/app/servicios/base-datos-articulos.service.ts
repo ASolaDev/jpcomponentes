@@ -72,21 +72,20 @@ export class BaseDatosArticulosService {
   }
 
   filtrados(patron: string, selCat: string, selFab: string) {
-    let filteredArticles = this.articulos;
+    let articulosFiltrados = this.articulos;
 
     if (patron) {
-      filteredArticles = this.getArticuloByNombre(patron);
+      articulosFiltrados = this.getArticuloByNombre(patron);
     }
 
     if (selCat !== "0") {
-      filteredArticles = filteredArticles.filter(article => article.cat == selCat);
+      articulosFiltrados = articulosFiltrados.filter(article => article.cat == selCat);
     }
 
     if (selFab !== "0") {
-      filteredArticles = filteredArticles.filter(article => article.fab == selFab);
+      articulosFiltrados = articulosFiltrados.filter(article => article.fab == selFab);
     }
 
-    return filteredArticles;
+    return articulosFiltrados;
   }
-
 }
