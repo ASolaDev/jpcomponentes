@@ -11,37 +11,36 @@ import { ArticuloComponent } from '../articulo/articulo.component';
 
 export class BuscadorComponent {
 
-  selCat: any = "";
-  selFab: any = "";
+  selCat: string = "0";
+  selFab: string = "0";
   patron: string = "";
-  resultados: any;
 
+  categorias: any[] = [];
+  fabricantes: any[] = [];
+  resultados: any[] = [];
 
   constructor(private datos: BaseDatosArticulosService) {
-    this.resultados = this.datos.getArticulos();
+    this.categorias = this.datos.getCategorias();
+    this.fabricantes = this.datos.getFabricantes();
+    this.buscar();
   }
 
-  getCategorias() {
-    return this.datos.getCategorias();
-  }
-
-  getFabricantes() {
-    return this.datos.getFabricantes();
-  }
-
-  setCat(id: number) {
+  setCat(id: string) {
     this.selCat = id;
+    this.buscar();
   }
 
-  setFab(id: number) {
+  setFab(id: string) {
     this.selFab = id;
+    this.buscar();
   }
 
   setPatron(pattern: string) {
     this.patron = pattern;
+    this.buscar();
   }
 
-  filtrados() {
-    return this.datos.filtrados(this.patron, this.selCat, this.selFab);
+  buscar() {
+    this.resultados = this.datos.filtrados(this.patron, this.selCat, this.selFab);
   }
 }

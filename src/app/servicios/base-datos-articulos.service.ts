@@ -72,20 +72,13 @@ export class BaseDatosArticulosService {
   }
 
   filtrados(patron: string, selCat: string, selFab: string) {
-    let articulosFiltrados = this.articulos;
+    return this.articulos.filter(article => {
+      const coincideNombre = !patron || article.nombre.toLowerCase().includes(patron.toLowerCase());
+      const coincideCategoria = selCat === "0" || article.cat == selCat;
+      const coincideFabricante = selFab === "0" || article.fab == selFab;
 
-    if (patron) {
-      articulosFiltrados = this.getArticuloByNombre(patron);
-    }
-
-    if (selCat !== "0") {
-      articulosFiltrados = articulosFiltrados.filter(article => article.cat == selCat);
-    }
-
-    if (selFab !== "0") {
-      articulosFiltrados = articulosFiltrados.filter(article => article.fab == selFab);
-    }
-
-    return articulosFiltrados;
+      return (selCat !== "0" || selFab !== "0" || patron) && coincideNombre && coincideCategoria && coincideFabricante;
+    });
   }
+
 }
