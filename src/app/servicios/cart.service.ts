@@ -16,6 +16,10 @@ export class CartService {
     return this.carrito;
   }
 
+  precioTotal() {
+    return this.carrito.reduce((acc, articulo) => acc + (articulo.precio * articulo.cantidad), 0);
+  }
+
   addToCarrito(datos: any) {
     let articuloExistente = this.carrito.find(articulo => articulo.id === datos.id);
     if (!articuloExistente) {
@@ -38,6 +42,11 @@ export class CartService {
 
   saveToLocalStorage() {
     localStorage.setItem('carrito', JSON.stringify(this.carrito));
+  }
+
+  eliminarArticulo(articulo: number) {
+    this.carrito = this.carrito.filter(a => a.id !== articulo);
+    this.saveToLocalStorage();
   }
 
 }

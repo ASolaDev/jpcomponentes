@@ -21,4 +21,8 @@ export class ArticuloCarritoComponent {
     this.carritoSrvc.actualizarCantidad(this.datos.id, this.datos.cantidad - 1);
   }
 
+  eliminarArticulo() {
+    this.carritoSrvc.eliminarArticulo(this.datos.id);
+  }
+
 }

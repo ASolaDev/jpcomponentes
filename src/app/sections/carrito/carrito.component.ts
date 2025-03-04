@@ -17,4 +17,8 @@ export class CarritoComponent {
     return this.carritoSrvc.getCarrito();
   }
 
+  getPrecioCarrito() {
+    return this.carritoSrvc.precioTotal();
+  }
+
 }

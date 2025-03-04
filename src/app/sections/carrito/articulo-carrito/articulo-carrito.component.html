@@ -13,6 +13,6 @@
     </div>
     <div>{{(datos.precio * datos.cantidad).toFixed(2)}}€</div>
     <div>
-        BOTÓN PARA ELIMINAR ESE ARTÍCULO DEL CARRITO
+        <button (click)="eliminarArticulo()" class="btn btn-danger">Eliminar</button>
     </div>
 </div>
